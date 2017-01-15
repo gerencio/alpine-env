@@ -40,7 +40,6 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   fi && \
   apk add --no-cache make gcc g++ python zeromq zeromq-dev krb5-dev && \
-  apk del curl make gcc g++ python linux-headers paxctl gnupg ${DEL_PKGS} && \
   npm i -g gulp-cli && \ 
   rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
