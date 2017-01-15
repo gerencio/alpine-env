@@ -3,7 +3,7 @@ FROM alpine:3.4
 # ENV VERSION=v0.10.48 CFLAGS="-D__USE_MISC" NPM_VERSION=2
 # ENV VERSION=v0.12.17 NPM_VERSION=2
 # ENV VERSION=v4.6.2 NPM_VERSION=2
-ENV VERSION=v6.9.1 NPM_VERSION=3
+ENV VERSION=v6.9.4 NPM_VERSION=3
 #ENV VERSION=v7.1.0 NPM_VERSION=3
 
 # For base builds
@@ -39,7 +39,10 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
     npm install -g npm@${NPM_VERSION} && \
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   fi && \
+  apk add --no-cache make gcc g++ python zeromq zeromq-dev krb5-dev && \
   apk del curl make gcc g++ python linux-headers paxctl gnupg ${DEL_PKGS} && \
+  npm i -g gulp-cli && \ 
   rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+ 
